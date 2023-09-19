@@ -5,12 +5,11 @@ import tkinter.messagebox as tm
 from classes.ImageCaptcha import CustomImageCaptcha
 from classes.Utils import Helper
 
+
 # # link: https://www.youtube.com/watch?v=O70FuH2LhNg&t=180s
 
 
-
 def submit(text: str):
-
     if operator.eq(Helper.Answer, text):
         tm.showinfo("Success", "correct")
     else:
