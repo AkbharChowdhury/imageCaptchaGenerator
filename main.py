@@ -10,13 +10,11 @@ from classes.Utils import Helper
 
 
 def submit(text: str):
-    print(Helper.Answer )
-    print(text)
-    # if operator.eq(answer, text):
-    if text == Helper.Answer:
+
+    if operator.eq(Helper.Answer, text):
         tm.showinfo("Success", "correct")
     else:
-        tm.showerror('error', f'please try again! the answer was {Helper.Answer}')
+        tm.showerror('error', 'please try again!')
 
 
 def create_app():
