@@ -4,8 +4,6 @@ from captcha.image import ImageCaptcha
 
 
 class CustomImageCaptcha:
-    fruit = 'Apple'
-
     def __init__(self, text: str = 'Hello'):
         self.__text = text if text else "hello world"
         self.__fonts: list[str] = [
