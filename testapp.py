@@ -30,10 +30,10 @@ class Home:
         self.master.title("Image captcha")
         self.master.geometry("400x250")
         self.frame = tk.Frame(self.master)
-        self.captcha_image = ImageTk.PhotoImage(PIL.Image.open("captcha.png"))
+        self.captcha_image = ImageTk.PhotoImage(PIL.Image.open("src/captcha.png"))
         # ImageTk.PhotoImage(Image.open("Sample.png"))
-        photo = PhotoImage(file="captcha.png")
-        photoimage = ImageTk.PhotoImage(PIL.Image.open("captcha.png"))
+        photo = PhotoImage(file="src/captcha.png")
+        photoimage = ImageTk.PhotoImage(PIL.Image.open("src/captcha.png"))
 
         # create title Button
         Label(self.frame, text="Please complete the captcha below", width="300", height="1",
@@ -64,7 +64,7 @@ class Login:
 
         self.frame = tk.Frame(self.master)
         # self.master.resizable(0, 0)  # set resizable to false
-        self.captcha_image = ImageTk.PhotoImage(PIL.Image.open("captcha.png"))
+        self.captcha_image = ImageTk.PhotoImage(PIL.Image.open("src/captcha.png"))
 
         # login UI
         # self.label_title = Label(self.frame, text="Student Login", font=("Helvetica", 16))

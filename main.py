@@ -1,63 +1,57 @@
 import operator
+from tkinter import *
+import tkinter.messagebox as tm
 
-from ImageCaptcha import CustomImageCaptcha
+from classes.ImageCaptcha import CustomImageCaptcha
+from classes.Utils import Helper
+
+# # link: https://www.youtube.com/watch?v=O70FuH2LhNg&t=180s
 
 
-# link: https://www.youtube.com/watch?v=O70FuH2LhNg&t=180s
-def main():
 
-
-
-    # name = input("Name")
-    # print(name is emp)
-    # print(font_manager.get_font_names())
-    # text: str = input('Enter captcha image text: ')
-    answer: str = random_text();
-    image = CustomImageCaptcha(answer)
-    image.generate_captcha()
-    text: str = input('Enter captcha image text: ')
-
-    if operator.eq(answer, text):
-        print("passed")
+def submit(text: str):
+    print(Helper.Answer )
+    print(text)
+    # if operator.eq(answer, text):
+    if text == Helper.Answer:
+        tm.showinfo("Success", "correct")
     else:
-        print("failed")
+        tm.showerror('error', f'please try again! the answer was {Helper.Answer}')
 
 
-def random_text():
-    import string
-    import random
+def create_app():
+    root = Tk()
+    root.title('captcha test example')
+    root.geometry("600x450")
 
-    # initializing size of string
-    size = 6
+    captcha_image = PhotoImage(file='captcha.png')
+    image_view = Label(root, image=captcha_image)
+    image_view.pack()
 
-    # using random.choices()
-    # generating random strings
-    return ''.join(random.choices(string.ascii_uppercase +
-                                  string.digits, k=size))
+    def refresh_captcha():
+        # pass
+        Helper.Answer = Helper.random_text()
+        image = CustomImageCaptcha(Helper.Answer)
+        image.generate_captcha()
+        img2 = PhotoImage(file='captcha.png')
+        image_view.configure(image=img2)
+        image_view.image = img2
+
+    refresh_button = Button(root, text='refresh'.capitalize(), command=lambda: refresh_captcha())
+    refresh_button.pack(pady=20)
+
+    user_input = Entry(root)
+    user_input.pack()
+    submit_button = Button(root, text='Submit', command=lambda: submit(user_input.get()))
+    submit_button.pack(pady=20)
+    mainloop()
+
+
+def main():
+    Helper.Answer = Helper.random_text()
+    CustomImageCaptcha(Helper.Answer).generate_captcha()
+    create_app()
 
 
 if __name__ == '__main__':
     main()
-
-    # print(random_text())
-
-    # main()
-    # Import the following modules
-    # from captcha.image import ImageCaptcha, DEFAULT_FONTS
-    #
-    # font_sizes: tuple[int, int, int] = (40, 70, 100)
-    #
-    # # Create an image instance of the given size
-    # image = ImageCaptcha(width=280,
-    #                      height=90,
-    #                      font_sizes=(40, 70, 100),
-    #                      fonts=DEFAULT_FONTS)
-    #
-    # # Image captcha text
-    # captcha_text = 'apple'
-    #
-    # # generate the image of the given text
-    # data = image.generate(captcha_text)
-    #
-    # # write the image on the given file and save it
-    # image.write(captcha_text, 'test.png')

@@ -17,7 +17,7 @@ class CustomImageCaptcha:
                                              # fonts=self.__fonts,
                                              font_sizes=self.__font_sizes
                                              )
-        # captcha.write(text, 'captcha.png')
-        data: BytesIO = captcha.generate(self.__text)
-        image: Image = Image.open(data)
-        image.show('Sample')
+        captcha.write(self.__text, 'captcha.png')
+        # data: BytesIO = captcha.generate(self.__text)
+        # image: Image = Image.open(data)
+        # image.show('Captcha Image')
