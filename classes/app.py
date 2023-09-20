@@ -1,7 +1,7 @@
 import operator
-import tkinter as tk
 import tkinter.messagebox as tm
-from tkinter import Button, PhotoImage, Label, Entry
+from tkinter import Button, PhotoImage, Label, Entry, Frame
+
 from classes.Utils import Helper
 
 
@@ -12,13 +12,13 @@ class App:
         else:
             tm.showerror('error', 'please try again!')
 
-    def __refresh_captcha(self, image: Label):
+    def __refresh_captcha(self, image_label: Label):
         Helper.Answer = Helper.random_text()
         Helper.generate_image()
         new_image = self.__get_image()
-        image.configure(image=new_image)
-        image.image = new_image
-        return image
+        image_label.configure(image=new_image)
+        image_label.image = new_image
+        return image_label
 
     def __get_image(self):
         return PhotoImage(file='captcha.png')
@@ -29,7 +29,7 @@ class App:
         self.__size = {"width": 600, "height": 450}
 
         self.__master.geometry(f"{self.__size.get('width')}x{self.__size.get('height')}")
-        self.__frame = tk.Frame(self.__master)
+        self.__frame = Frame(self.__master)
         self.__master.resizable(0, 0)
 
         self.__captcha_image = self.__get_image()

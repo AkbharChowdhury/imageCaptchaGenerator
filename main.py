@@ -7,10 +7,10 @@ from classes.app import App
 # https://www.youtube.com/watch?v=bVnKX0315lo
 
 def app():
-    window = tk.Tk()
-    App(window)
-    window.resizable(False, False)
-    window.mainloop()
+    root = tk.Tk()
+    App(root)
+    root.resizable(False, False)
+    root.mainloop()
 
 
 def main():
